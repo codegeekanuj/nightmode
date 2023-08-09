@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+
+    .night{
+        background-color: black;
+        color: white;
+    }
+
+    .ui-switch {
+      /* switch */
+      --switch-bg: rgb(135, 150, 165);
+      --switch-width: 48px;
+      --switch-height: 20px;
+      /* circle */
+      --circle-diameter: 32px;
+      --circle-bg: rgb(0, 56, 146);
+      --circle-inset: calc((var(--circle-diameter) - var(--switch-height)) / 2);
+    }
+    
+    .ui-switch input {
+      display: none;
+    }
+    
+    .slider {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      width: var(--switch-width);
+      height: var(--switch-height);
+      background: var(--switch-bg);
+      border-radius: 999px;
+      position: relative;
+      cursor: pointer;
+    }
+    
+    .slider .circle {
+      top: calc(var(--circle-inset) * -1);
+      left: 0;
+      width: var(--circle-diameter);
+      height: var(--circle-diameter);
+      position: absolute;
+      background: var(--circle-bg);
+      border-radius: inherit;
+      background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjAiIHdpZHRoPSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj4KICAgIDxwYXRoIGZpbGw9IiNmZmYiCiAgICAgICAgZD0iTTkuMzA1IDEuNjY3VjMuNzVoMS4zODlWMS42NjdoLTEuMzl6bS00LjcwNyAxLjk1bC0uOTgyLjk4Mkw1LjA5IDYuMDcybC45ODItLjk4Mi0xLjQ3My0xLjQ3M3ptMTAuODAyIDBMMTMuOTI3IDUuMDlsLjk4Mi45ODIgMS40NzMtMS40NzMtLjk4Mi0uOTgyek0xMCA1LjEzOWE0Ljg3MiA0Ljg3MiAwIDAwLTQuODYyIDQuODZBNC44NzIgNC44NzIgMCAwMDEwIDE0Ljg2MiA0Ljg3MiA0Ljg3MiAwIDAwMTQuODYgMTAgNC44NzIgNC44NzIgMCAwMDEwIDUuMTM5em0wIDEuMzg5QTMuNDYyIDMuNDYyIDAgMDExMy40NzEgMTBhMy40NjIgMy40NjIgMCAwMS0zLjQ3MyAzLjQ3MkEzLjQ2MiAzLjQ2MiAwIDAxNi41MjcgMTAgMy40NjIgMy40NjIgMCAwMTEwIDYuNTI4ek0xLjY2NSA5LjMwNXYxLjM5aDIuMDgzdi0xLjM5SDEuNjY2em0xNC41ODMgMHYxLjM5aDIuMDg0di0xLjM5aC0yLjA4NHpNNS4wOSAxMy45MjhMMy42MTYgMTUuNGwuOTgyLjk4MiAxLjQ3My0xLjQ3My0uOTgyLS45ODJ6bTkuODIgMGwtLjk4Mi45ODIgMS40NzMgMS40NzMuOTgyLS45ODItMS40NzMtMS40NzN6TTkuMzA1IDE2LjI1djIuMDgzaDEuMzg5VjE2LjI1aC0xLjM5eiIgLz4KPC9zdmc+");
+      background-repeat: no-repeat;
+      background-position: center center;
+      -webkit-transition: left 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, -webkit-transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+      -o-transition: left 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+      transition: left 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, -webkit-transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);
+      ;
+    }
+    
+    .slider .circle::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.75);
+      border-radius: inherit;
+      -webkit-transition: all 500ms;
+      -o-transition: all 500ms;
+      transition: all 500ms;
+      opacity: 0;
+    }
+    
+    /* actions */
+    
+    .ui-switch input:checked+.slider .circle {
+      left: calc(100% - var(--circle-diameter));
+      background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjAiIHdpZHRoPSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj4KICAgIDxwYXRoIGZpbGw9IiNmZmYiCiAgICAgICAgZD0iTTQuMiAyLjVsLS43IDEuOC0xLjguNyAxLjguNy43IDEuOC42LTEuOEw2LjcgNWwtMS45LS43LS42LTEuOHptMTUgOC4zYTYuNyA2LjcgMCAxMS02LjYtNi42IDUuOCA1LjggMCAwMDYuNiA2LjZ6IiAvPgo8L3N2Zz4=");
+    }
+    
+    .ui-switch input:active+.slider .circle::before {
+      -webkit-transition: 0s;
+      -o-transition: 0s;
+      transition: 0s;
+      opacity: 1;
+      width: 0;
+      height: 0;
+    }
+    
+    body{
+        height: 100vh;
+    }
+
+    </style>
+<body id="night">
+    <label class="ui-switch" >
+        <input type="checkbox">
+        <div class="slider" onclick="night()">
+          <div class="circle"></div>
+        </div>
+      </label>
+      <br>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi aperiam neque quos quo. Quod vero sapiente distinctio aperiam hic numquam fugit. Provident temporibus voluptatibus recusandae quasi aperiam, nisi amet error numquam ducimus. Similique nostrum commodi aperiam nobis pariatur eum quam cupiditate nemo voluptas, dicta in! Iste, voluptatem ut. Quaerat, blanditiis dignissimos praesentium ullam quo dolorem officiis aspernatur, temporibus repudiandae numquam magnam tempore? Voluptas, nemo earum. Voluptates perferendis cupiditate, saepe nostrum ex, error corrupti ipsa, eaque alias dignissimos fugiat tenetur. Inventore tempore quasi eveniet at delectus possimus cum est optio, a eius labore veritatis, quis deleniti, voluptatum illo vero explicabo excepturi praesentium aliquid neque hic. Porro necessitatibus, voluptatum debitis inventore incidunt nobis eveniet hic voluptates impedit doloribus. Placeat libero dignissimos expedita facilis quia inventore, dolorem laboriosam nam itaque et iste quidem dolore, incidunt tenetur odit mollitia eos consequuntur voluptatum accusantium distinctio ullam laudantium, tempore reprehenderit modi. Aliquam, nobis. Enim, rerum! Doloribus sapiente impedit sit. Corporis, voluptate ratione magnam ipsam aperiam error quidem quasi minima, eum natus debitis molestiae voluptas, id quibusdam provident nostrum omnis quae laudantium sunt nisi mollitia. Ut nisi, at consequatur porro, reprehenderit error quidem, atque accusamus tempore aliquam hic corporis similique culpa ea? Vel aliquam esse soluta repellendus hic vitae corporis atque nesciunt unde, assumenda aperiam ipsum tempore sed consequuntur quasi earum ut, saepe libero? Aspernatur odit soluta at ipsam maiores necessitatibus in laudantium minus eaque! Earum molestiae possimus nobis et quam ipsa minima ut asperiores perspiciatis dolor, molestias eaque rem consequatur, iure nulla distinctio deserunt assumenda ullam neque est laboriosam, repellat quis. Odit quaerat facilis dolores omnis repellendus deleniti magnam in eveniet perferendis voluptates. Illo vel temporibus pariatur quis perferendis veniam deleniti debitis, placeat at ut ea voluptatibus in et sunt reiciendis nisi saepe velit ipsum nam asperiores! Reprehenderit iure earum est neque, officiis odit impedit. Laudantium explicabo voluptatem aut rerum aspernatur officia iste fugiat repellat quae reiciendis, praesentium veniam esse sapiente optio magni deserunt culpa placeat dicta blanditiis? Est cum ipsa maiores consequatur error aut. Maiores rem, nisi quos itaque repellendus est. Quo quos beatae dignissimos eveniet optio cupiditate consequuntur, tempore officia est inventore laborum a aliquid in accusantium molestias? Ab laboriosam accusantium laborum quo magnam esse! Neque vero delectus beatae laboriosam quas quasi, vitae voluptate similique a laborum itaque eos animi voluptas nesciunt facilis possimus explicabo veniam? Dolore enim minus perferendis, debitis molestiae adipisci rem, similique porro laudantium non nisi? Placeat minima sequi molestias voluptas, suscipit unde quibusdam possimus, quos amet ea iure illum ratione aliquam accusamus ullam. Mollitia pariatur eligendi aliquid quae voluptates voluptatum magni praesentium dolorem officia nisi quo illo architecto animi quis soluta, sit quasi dolores distinctio minima vel, accusamus voluptatem doloribus? Mollitia quas voluptates corporis id laudantium porro perspiciatis esse laborum molestiae quam dolore nisi itaque saepe, enim inventore repellendus illo assumenda provident. Non expedita eaque aliquam ullam incidunt consectetur praesentium cumque molestiae sed, temporibus amet dolore hic quis tenetur esse ad dolores adipisci commodi possimus dignissimos! Et soluta ratione dolores recusandae deleniti sit maiores ex reiciendis sed fuga minima quia dignissimos inventore nulla explicabo consectetur excepturi blanditiis asperiores in, cupiditate expedita libero! Accusamus cumque quas, eos sit ipsum sapiente asperiores omnis ex deserunt aliquam? Ab consectetur, amet ad quaerat vel atque excepturi nemo.
+      <script src="./exp.js"></script>
+      </body>
+</html>
